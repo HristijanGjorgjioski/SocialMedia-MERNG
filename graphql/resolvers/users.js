@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { UserInputError } = require('apollo-server')
 
+const { validateRegisterInput } = require('../../util/validators')
 const { secret } = require('../../config')
 
 const User = require('../../models/User')
@@ -9,6 +10,12 @@ const User = require('../../models/User')
 module.exports = {
     Mutation: {
         async register(_, { registerInput: { username, email, password, confirmPassword } }) {
+            const { valid, errors } = validateRegisterInput(username, email, password, confirmPassword)
+
+            if(!valid) {
+                throw new UserInputError('Errors', { errors })
+            }
+
             const user = await User.findOne({ username })
 
             if(user) {
@@ -19,7 +26,7 @@ module.exports = {
 
             password = await bcrypt.hash(password, 16)
 
-            const newUser = new User({ emai, username, password, createdAt: new Date().toISOString() })
+            const newUser = new User({ email, username, password, createdAt: new Date().toISOString() })
 
             const res = await newUser.save()
 
