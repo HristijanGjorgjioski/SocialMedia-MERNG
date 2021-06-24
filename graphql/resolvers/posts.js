@@ -9,6 +9,13 @@ module.exports = {
             } catch(err) {
                 throw new Error(err)
             }
+        },
+        async getPost(_, { postId }) {
+            try {
+                
+            } catch (err) {
+                throw new Error(err)
+            }
         }
     }
 }
