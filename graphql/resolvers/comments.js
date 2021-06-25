@@ -25,6 +25,9 @@ module.exports = {
 
                 return post
             } else throw new UserInputError('Post not found')
+        },
+        deleteComment: async (_, { postId, commentId }, context) => {
+            const { username } = checkAuth(context)
         }
     }
 }
