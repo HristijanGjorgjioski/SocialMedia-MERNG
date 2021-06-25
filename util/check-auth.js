@@ -12,8 +12,10 @@ module.exports = (context) => {
             try {
                 const user = jwt.verify(token, secret)
             } catch (err) {
-                
+                throw new AuthenticationError('Invalid token', err)
             }
         }
+        throw new Error('Authentication token must be valid')
     }
+    throw new Error('Authentication header must be provided')
 }
