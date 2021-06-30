@@ -63,6 +63,12 @@ module.exports = {
                     post.likes = post.likes.filter((like) => like.username !== username)
 
                     await post.save()
+                } else {
+                    // Post not liked
+                    post.likes.push({
+                        username,
+                        createdAt: new Date().toISOString()
+                    })
                 }
             }
         }
