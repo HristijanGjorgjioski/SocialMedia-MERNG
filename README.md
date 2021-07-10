@@ -1,3 +1,3 @@
 # SocialMedia-MERNG
 
-#### Project is on pause for some time!
+#### I am going to continue to work on this project after some time!
