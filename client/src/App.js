@@ -9,6 +9,8 @@ const App = () => {
     return (
         <Router>
             <Router excat path='/' component={Home} />
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/register' component={Register} />
         </Router>
     )
 }
