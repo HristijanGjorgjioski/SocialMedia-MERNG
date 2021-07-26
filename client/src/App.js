@@ -1,10 +1,15 @@
 import React from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
+import 'semantic-ui-css/semantic.min.css'
+
+
 
 const App = () => {
     return (
-        <div>
-            OPA IHA!
-        </div>
+        <Router>
+            <Router excat path='/' component={Home} />
+        </Router>
     )
 }
 
