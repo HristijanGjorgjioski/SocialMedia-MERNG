@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Login = () => {
+const MenuBar = () => {
     return (
         <div>
-            Login
+            MenuBar
         </div>
     )
 }
 
-export default Login
+export default MenuBar
