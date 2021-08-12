@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Menu, Segment } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 
 const MenuBar = () => {
   const [activeItem, setActiveItem] = useState('')
@@ -11,11 +11,6 @@ const MenuBar = () => {
           <Menu.Item
             name='home'
             active={activeItem === 'home'}
-            onClick={handleItemClick}
-          />
-          <Menu.Item
-            name='friends'
-            active={activeItem === 'friends'}
             onClick={handleItemClick}
           />
           <Menu.Menu position='right'>
