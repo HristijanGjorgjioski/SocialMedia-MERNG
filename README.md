@@ -1,6 +1,6 @@
 # SocialMedia-MERNG
 
-#### I am going to continue to work on this project after some time!
+#### Project will be done in few weeks!
 
 #### MERNG stack
   - MongoDB
