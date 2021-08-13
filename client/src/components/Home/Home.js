@@ -3,17 +3,22 @@ import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-const Home = () => {
-    const { loading, data } = useQuery(FETCH_POSTS_QUERY)
+import { Grid } from 'semantic-ui-react'
 
-    if(data) {
-        console.log(data)
-    }
+const Home = () => {
+    const { loading, data: { getPosts: posts } } = useQuery(FETCH_POSTS_QUERY)
 
     return (
-        <div>
-            Home
-        </div>
+        <Grid columns={3}>
+            <Grid.Row>
+                <h1>Recent Posts</h1>
+            </Grid.Row>
+            <Grid.Row>
+                {loading ? (
+                    <h1>Loading posts...</h1>
+                )}
+            </Grid.Row>
+        </Grid>
     )
 }
 
