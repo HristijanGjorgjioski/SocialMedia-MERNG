@@ -1,7 +1,15 @@
 import React from 'react'
-import gql from 'graphql'
+
+import { useQuery } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
 
 const Home = () => {
+    const { loading, data } = useQuery(FETCH_POSTS_QUERY)
+
+    if(data) {
+        console.log(data)
+    }
+
     return (
         <div>
             Home
@@ -10,14 +18,16 @@ const Home = () => {
 }
 
 const FETCH_POSTS_QUERY = gql`
-    getPosts{
-        id body createdAt likeCount
-        likes{
-            username
-        }
-        commentCount
-        comments{
-            id username createdAt body
+    {
+        getPosts{
+            id body createdAt likeCount
+            likes{
+                username
+            }
+            commentCount
+            comments{
+                id username createdAt body
+            }
         }
     }
 `
