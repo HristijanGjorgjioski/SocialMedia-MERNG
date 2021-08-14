@@ -8,6 +8,10 @@ const PostCard = ( { post: { body, createdAt, id, username, likeCount, commentCo
     const likePost = () => {
         console.log('like post')
     }
+
+    const commentOnPost = () => {
+        console.log('comment post')
+    }
     
     return (
         <Card fluid>
@@ -21,6 +25,10 @@ const PostCard = ( { post: { body, createdAt, id, username, likeCount, commentCo
             <Button as='div' labelPosition='right' onClick={likePost}>
                 <Button color='teal' basic><Icon name='heart' /></Button>
                 <Label basic color='teal' pointing='left'>{likeCount}</Label>
+            </Button>
+            <Button as='div' labelPosition='right' onClick={commentOnPost}>
+                <Button color='blue' basic><Icon name='comments' /></Button>
+                <Label basic color='blue' pointing='left'>{commentCount}</Label>
             </Button>
             </Card.Content>
         </Card>
