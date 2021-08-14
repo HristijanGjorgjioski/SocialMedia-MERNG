@@ -1,3 +1,4 @@
+import gql from 'graphql-tag'
 import React, { useState } from 'react'
 import { Button, Form } from 'semantic-ui-react'
 
@@ -8,6 +9,15 @@ const Register = () => {
         email: '',
         confirmPassword: ''
     })
+
+    const onChange = (event) => {
+        setValues({ ...values, [event.target.name]: event.target.value })
+    }
+
+    const onSubmit = (event) => {
+        event.preventDefault()
+
+    }
 
     return (
         <div>
@@ -22,5 +32,11 @@ const Register = () => {
         </div>
     )
 }
+
+const REGISTER_USER = gql`
+    mutation register(
+        
+    )
+`
 
 export default Register
