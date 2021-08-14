@@ -1,5 +1,6 @@
-import gql from 'graphql-tag'
 import React, { useState } from 'react'
+import gql from 'graphql-tag'
+import { useMutation } from '@apollo/react-hooks'
 import { Button, Form } from 'semantic-ui-react'
 
 const Register = () => {
@@ -19,6 +20,13 @@ const Register = () => {
 
     }
 
+    const [addUser, { loading}] = useMutation(REGISTER_USER, {
+        update(proxy, result) {
+            console.log(result)
+        },
+        variables: values
+    })
+
     return (
         <div>
             <Form onSubmit={onSubmit} noValidate>
@@ -35,8 +43,26 @@ const Register = () => {
 
 const REGISTER_USER = gql`
     mutation register(
-        
-    )
+        $username: String!
+        $email: String!
+        $password: String!
+        $confirmPassword: String!
+    ) {
+        register(
+            registerInput: {
+                username: $username
+                email: $email
+                password: $password
+                confirmPassowrd: $confirmPassowrd
+            }
+        ) {
+            id
+            email
+            username
+            createdAt
+            token
+        }
+    }
 `
 
 export default Register
