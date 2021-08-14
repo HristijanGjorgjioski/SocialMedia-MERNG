@@ -43,6 +43,15 @@ const Register = () => {
                 <Form.Input label="Confrim Password" placeholder="Confrim Password" name="confrimPassword" type="password" value={values.confirmPassword} onChange={onChange} />
                 <Button type="submit" primary>Register</Button>
             </Form>
+            {Object.keys(errors).length > 0 && (
+                <div className="ui error message">
+                    <ul className="list">
+                        {Object.values(errors).map(value => (
+                            <li key={value}>{value}</li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
     )
 }
