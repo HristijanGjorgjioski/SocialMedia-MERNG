@@ -54,13 +54,9 @@ const LOGIN_USER = gql`
         $username: String!
         $password: String!
     ) {
-        register(
-            registerInput: {
+        login(
                 username: $username
-                email: $email
                 password: $password
-                confirmPassowrd: $confirmPassowrd
-            }
         ) {
             id
             email
@@ -71,5 +67,5 @@ const LOGIN_USER = gql`
     }
 `
 
-export default Register
+export default Login
 
