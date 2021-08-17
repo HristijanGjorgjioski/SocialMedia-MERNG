@@ -4,13 +4,20 @@ import { useMutation } from '@apollo/react-hooks'
 import { Button, Form } from 'semantic-ui-react'
 
 import '../Register/styles.css'
+import { useForm } from '../../util/hooks'
 
-const Register = ({ history }) => {
+const Login = ({ history }) => {
     const [errors, setErrors] = useState({})
 
-    const [addUser, { loading }] = useMutation(REGISTER_USER, {
+    const {  onChange, onSubmit, values } = useForm(registerUser, {
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+    })
+
+    const [loginUser, { loading }] = useMutation(LOGIN_USER, {
         update(_, result) {
-            console.log(result)
             history.push('/')
         },
         onError(err) {
@@ -19,9 +26,8 @@ const Register = ({ history }) => {
         variables: values
     })
 
-    const onSubmit = (event) => {
-        event.preventDefault()
-        addUser()
+    function loginUserCallback() {
+        
     }
 
     return (
