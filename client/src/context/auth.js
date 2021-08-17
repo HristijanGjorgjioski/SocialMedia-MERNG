@@ -26,5 +26,23 @@ const authReducer = (state, action) => {
 const AuthProvider = (props) => {
     const [state, dispatch] = useReducer(authReducer, { user: null })
 
-    
+    const login = (userData) => {
+        dispatch({
+            type: 'LOGIN',
+            payload: userData
+        })
+    }
+
+    const logout = () => {
+        dispatch({ type: 'LOGOUT' })
+    }
+
+    return (
+        <AuthContext.Provider 
+            value={{ user: state.user, login, logout }}
+            {...props} 
+        />
+    )
 }
+
+export { AuthContext, AuthProvider } 
