@@ -4,13 +4,21 @@ import { useMutation } from '@apollo/react-hooks'
 import { Button, Form } from 'semantic-ui-react'
 
 import './styles.css'
+import { useForm } from '../../util/hooks'
 
 const Register = ({ history }) => {
     const [errors, setErrors] = useState({})
-    const initialState = useState({
+    const initialState = {
         username: '',
-        password: '',
         email: '',
+        password: '',
+        confirmPassword: ''
+    }
+
+    const {  onChange, onSubmit, values } = useForm(addUser, {
+        username: '',
+        email: '',
+        password: '',
         confirmPassword: ''
     })
 
