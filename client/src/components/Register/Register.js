@@ -7,16 +7,12 @@ import './styles.css'
 
 const Register = ({ history }) => {
     const [errors, setErrors] = useState({})
-    const [values, setValues] = useState({
+    const initialState = useState({
         username: '',
         password: '',
         email: '',
         confirmPassword: ''
     })
-
-    const onChange = (event) => {
-        setValues({ ...values, [event.target.name]: event.target.value })
-    }
 
     const [addUser, { loading }] = useMutation(REGISTER_USER, {
         update(_, result) {
