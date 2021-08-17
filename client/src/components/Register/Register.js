@@ -8,14 +8,8 @@ import { useForm } from '../../util/hooks'
 
 const Register = ({ history }) => {
     const [errors, setErrors] = useState({})
-    const initialState = {
-        username: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-    }
 
-    const {  onChange, onSubmit, values } = useForm(addUser, {
+    const {  onChange, onSubmit, values } = useForm(registerUser, {
         username: '',
         email: '',
         password: '',
@@ -24,7 +18,6 @@ const Register = ({ history }) => {
 
     const [addUser, { loading }] = useMutation(REGISTER_USER, {
         update(_, result) {
-            console.log(result)
             history.push('/')
         },
         onError(err) {
@@ -33,8 +26,7 @@ const Register = ({ history }) => {
         variables: values
     })
 
-    const onSubmit = (event) => {
-        event.preventDefault()
+    function registerUser() {
         addUser()
     }
 
