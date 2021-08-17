@@ -9,11 +9,9 @@ import { useForm } from '../../util/hooks'
 const Login = ({ history }) => {
     const [errors, setErrors] = useState({})
 
-    const {  onChange, onSubmit, values } = useForm(registerUser, {
+    const {  onChange, onSubmit, values } = useForm(loginUserCallback, {
         username: '',
-        email: '',
         password: '',
-        confirmPassword: ''
     })
 
     const [loginUser, { loading }] = useMutation(LOGIN_USER, {
@@ -27,18 +25,16 @@ const Login = ({ history }) => {
     })
 
     function loginUserCallback() {
-        
+        loginUser()
     }
 
     return (
         <div className='form-container'>
             <Form onSubmit={onSubmit} noValidate className={loading && "loading"}>
-                <h1>Register</h1>
+                <h1>Login</h1>
                 <Form.Input label="Username" placeholder="Username" name="username" type="username" value={values.username} error={errors.username ? true : false} onChange={onChange} />
-                <Form.Input label="Email" placeholder="Email" name="Email" type="email" value={values.email} error={errors.email ? true : false} onChange={onChange} />
                 <Form.Input label="Password" placeholder="Password" name="password" type="password" value={values.password} error={errors.password ? true : false} onChange={onChange} />
-                <Form.Input label="Confrim Password" placeholder="Confrim Password" name="confrimPassword" type="password" value={values.confirmPassword} error={errors.confirmPassword ? true : false} onChange={onChange} />
-                <Button type="submit" primary>Register</Button>
+                <Button type="submit" primary>Login</Button>
             </Form>
             {Object.keys(errors).length > 0 && (
                 <div className="ui error message">
@@ -53,12 +49,10 @@ const Login = ({ history }) => {
     )
 }
 
-const REGISTER_USER = gql`
-    mutation register(
+const LOGIN_USER = gql`
+    mutation login(
         $username: String!
-        $email: String!
         $password: String!
-        $confirmPassword: String!
     ) {
         register(
             registerInput: {
