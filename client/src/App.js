@@ -8,17 +8,20 @@ import Home from './components/Home/Home'
 import Login from './components/Login/Login'
 import MenuBar from './components/MenuBar/MenuBar'
 import Register from './components/Register/Register'
+import { AuthProvider } from './context/auth'
 
 const App = () => {
     return (
-        <Router>
-            <Container>
-                <MenuBar />
-                <Router excat path='/' component={Home} />
-                <Route exact path='/login' component={Login} />
-                <Route exact path='/register' component={Register} />
-            </Container>
-        </Router>
+        <AuthProvider>
+            <Router>
+                <Container>
+                    <MenuBar />
+                    <Router excat path='/' component={Home} />
+                    <Route exact path='/login' component={Login} />
+                    <Route exact path='/register' component={Register} />
+                </Container>
+            </Router>
+        </AuthProvider>
     )
 }
 
