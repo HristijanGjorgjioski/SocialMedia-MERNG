@@ -9,6 +9,7 @@ import Login from './components/Login/Login'
 import MenuBar from './components/MenuBar/MenuBar'
 import Register from './components/Register/Register'
 import { AuthProvider } from './context/auth'
+import AuthRoute from './util/AuthRoute'
 
 const App = () => {
     return (
@@ -16,8 +17,8 @@ const App = () => {
             <Router>
                 <Container>
                     <MenuBar />
-                    <Router excat path='/' component={Home} />
-                    <Route exact path='/login' component={Login} />
+                    <AuthRoute excat path='/' component={Home} />
+                    <AuthRoute exact path='/login' component={Login} />
                     <Route exact path='/register' component={Register} />
                 </Container>
             </Router>
