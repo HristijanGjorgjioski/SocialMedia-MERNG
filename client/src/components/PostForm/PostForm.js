@@ -3,10 +3,19 @@ import { Button, Form } from 'semantic-ui-react'
 import gql from 'graphql-tag'
 
 import { useForm } from '../../util/hooks'
+import { useMutation } from '@apollo/react-hooks'
 
 const PostForm = () => {
     const { values, onChange, onSubmit } = useForm(createPostCallback, {
         body: ''
+    })
+
+    const [createPost, { error }] = useMutation(CREATE_POST_MUTATION, {
+        variables: values,
+        update: (_, result) => {
+            console.log(result)
+            values.body = ""
+        }
     })
 
     return (
@@ -28,7 +37,18 @@ const PostForm = () => {
 const CREATE_POST_MUTATION = gql`
     mutation createPost($body: String!) {
         createPost(body: $body) {
-            
+            id
+            body
+            createdAt
+            username
+            likes{
+                id username createdAt
+            }
+            likeCount
+            comments{
+                id body username createdAt
+            }
+            commentCount
         }
     }
 `
