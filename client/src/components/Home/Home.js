@@ -1,13 +1,12 @@
 import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
 import { Grid } from 'semantic-ui-react'
 
 import PostCard from '../PostCard/PostCard'
 import { AuthContext } from '../../context/auth' 
-
-import './styles.css'
 import PostForm from '../PostForm/PostForm'
+import { FETCH_POSTS_QUERY } from '../../util/graphql'
+import './styles.css'
 
 const Home = () => {
     const { loading, data: { getPosts: posts } } = useQuery(FETCH_POSTS_QUERY)
