@@ -38,19 +38,4 @@ const Home = () => {
     )
 }
 
-const FETCH_POSTS_QUERY = gql`
-    {
-        getPosts{
-            id body createdAt likeCount
-            likes{
-                username
-            }
-            commentCount
-            comments{
-                id username createdAt body
-            }
-        }
-    }
-`
-
 export default Home
