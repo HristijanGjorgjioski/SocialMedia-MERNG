@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { Button, Label } from 'semantic-ui-react'
 
-const LikeButton = () => {
+const LikeButton = ({ post: { id, likeCount, likes } }) => {
     return (
         <div>
             <Button as='div' labelPosition='right' onClick={likePost}>
